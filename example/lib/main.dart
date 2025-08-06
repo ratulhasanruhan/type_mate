@@ -36,7 +36,7 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
   bool _hasOverlayPermission = false;
   bool _hasAccessibilityService = false;
   bool _isOverlayActive = false;
-  
+
   // UI state
   Timer? _statusTimer;
   int _textFieldFocusCount = 0;
@@ -110,9 +110,11 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
 
   Future<void> _checkPermissions() async {
     try {
-      final overlayPermission = await TypeMate.instance.checkOverlayPermission();
-      final accessibilityService = await TypeMate.instance.checkAccessibilityService();
-      
+      final overlayPermission = await TypeMate.instance
+          .checkOverlayPermission();
+      final accessibilityService = await TypeMate.instance
+          .checkAccessibilityService();
+
       setState(() {
         _hasOverlayPermission = overlayPermission;
         _hasAccessibilityService = accessibilityService;
@@ -170,7 +172,7 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
     try {
       await TypeMate.instance.testOverlay();
       _addLog('Test overlay triggered - bubble should appear for 3 seconds');
-      
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Test overlay triggered! Check for the bubble.'),
@@ -192,7 +194,7 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
     try {
       _addLog('Starting quick setup...');
       final result = await TypeMate.instance.quickSetup();
-      
+
       setState(() {
         _isInitialized = result['initialized'] ?? false;
         _hasOverlayPermission = result['hasOverlayPermission'] ?? false;
@@ -218,7 +220,9 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(message),
-          backgroundColor: result['serviceStarted'] == true ? Colors.green : Colors.orange,
+          backgroundColor: result['serviceStarted'] == true
+              ? Colors.green
+              : Colors.orange,
         ),
       );
     } catch (e) {
@@ -262,10 +266,11 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
                     const SizedBox(height: 16),
                     Text(
                       'TypeMate Plugin Example',
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onPrimary,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.headlineMedium
+                          ?.copyWith(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                            fontWeight: FontWeight.bold,
+                          ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8),
@@ -296,8 +301,14 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
                     ),
                     const SizedBox(height: 16),
                     _buildStatusRow('Plugin Initialized', _isInitialized),
-                    _buildStatusRow('Overlay Permission', _hasOverlayPermission),
-                    _buildStatusRow('Accessibility Service', _hasAccessibilityService),
+                    _buildStatusRow(
+                      'Overlay Permission',
+                      _hasOverlayPermission,
+                    ),
+                    _buildStatusRow(
+                      'Accessibility Service',
+                      _hasAccessibilityService,
+                    ),
                     _buildStatusRow('Overlay Active', _isOverlayActive),
                   ],
                 ),
@@ -364,12 +375,20 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
                       ),
                       const SizedBox(height: 16),
                       ElevatedButton.icon(
-                        onPressed: _isOverlayActive ? _stopOverlayService : _startOverlayService,
-                        icon: Icon(_isOverlayActive ? Icons.stop : Icons.play_arrow),
-                        label: Text(_isOverlayActive ? 'Stop Overlay' : 'Start Overlay'),
+                        onPressed: _isOverlayActive
+                            ? _stopOverlayService
+                            : _startOverlayService,
+                        icon: Icon(
+                          _isOverlayActive ? Icons.stop : Icons.play_arrow,
+                        ),
+                        label: Text(
+                          _isOverlayActive ? 'Stop Overlay' : 'Start Overlay',
+                        ),
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 16),
-                          backgroundColor: _isOverlayActive ? Colors.red : Colors.blue,
+                          backgroundColor: _isOverlayActive
+                              ? Colors.red
+                              : Colors.blue,
                           foregroundColor: Colors.white,
                         ),
                       ),
@@ -406,13 +425,21 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
                       Row(
                         children: [
                           Expanded(
-                            child: _buildStatCard('Events', _textFieldFocusCount.toString(), Icons.text_fields),
+                            child: _buildStatCard(
+                              'Events',
+                              _textFieldFocusCount.toString(),
+                              Icons.text_fields,
+                            ),
                           ),
                           const SizedBox(width: 16),
                           Expanded(
-                            child: _buildStatCard('Last Event', _lastEventTime.split(' ').length > 1 
-                                ? _lastEventTime.split(' ')[1] 
-                                : _lastEventTime, Icons.access_time),
+                            child: _buildStatCard(
+                              'Last Event',
+                              _lastEventTime.split(' ').length > 1
+                                  ? _lastEventTime.split(' ')[1]
+                                  : _lastEventTime,
+                              Icons.access_time,
+                            ),
                           ),
                         ],
                       ),
@@ -461,7 +488,9 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
                                 itemCount: _eventLog.length,
                                 itemBuilder: (context, index) {
                                   return Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 2),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 2,
+                                    ),
                                     child: Text(
                                       _eventLog[index],
                                       style: const TextStyle(
@@ -495,9 +524,9 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
                     const SizedBox(height: 8),
                     Text(
                       'Type in these fields to test overlay functionality:',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.grey[600],
-                      ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
                     ),
                     const SizedBox(height: 16),
                     const TextField(
@@ -569,7 +598,9 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
-              color: status ? Colors.green.withOpacity(0.1) : Colors.red.withOpacity(0.1),
+              color: status
+                  ? Colors.green.withOpacity(0.1)
+                  : Colors.red.withOpacity(0.1),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: status ? Colors.green : Colors.red,
@@ -590,7 +621,11 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
     );
   }
 
-  Widget _buildPermissionRow(String title, bool hasPermission, VoidCallback onTap) {
+  Widget _buildPermissionRow(
+    String title,
+    bool hasPermission,
+    VoidCallback onTap,
+  ) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -599,8 +634,8 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
           width: 1,
         ),
         borderRadius: BorderRadius.circular(8),
-        color: hasPermission 
-            ? Colors.green.withOpacity(0.05) 
+        color: hasPermission
+            ? Colors.green.withOpacity(0.05)
             : Colors.orange.withOpacity(0.05),
       ),
       child: Row(
@@ -617,16 +652,15 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
               ),
               child: const Text('Grant'),
             )
           else
-            Icon(
-              Icons.check_circle,
-              color: Colors.green,
-              size: 24,
-            ),
+            Icon(Icons.check_circle, color: Colors.green, size: 24),
         ],
       ),
     );
@@ -641,11 +675,7 @@ class _TypeMateHomePageState extends State<TypeMateHomePage> {
       ),
       child: Column(
         children: [
-          Icon(
-            icon,
-            color: Theme.of(context).colorScheme.primary,
-            size: 32,
-          ),
+          Icon(icon, color: Theme.of(context).colorScheme.primary, size: 32),
           const SizedBox(height: 8),
           Text(
             value,
