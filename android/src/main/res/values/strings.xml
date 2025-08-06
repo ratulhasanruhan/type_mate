@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="accessibility_service_description">TypeMate helps you by providing writing assistance when you type in text fields across all apps. It shows a bubble with spell check and grammar fix options.</string>
+</resources>

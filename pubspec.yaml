@@ -1,0 +1,70 @@
+name: type_mate
+description: A Flutter plugin for system-wide writing assistance with overlay bubbles that provide spell checking, grammar fixing, and other writing tools.
+version: 1.0.0
+homepage: https://github.com/ratulhasanruhan/type_mate
+repository: https://github.com/ratulhasanruhan/type_mate
+issue_tracker: https://github.com/ratulhasanruhan/type_mate/issues
+
+platforms:
+  android:
+
+
+screenshots:
+  - description: "TypeMate Logo"
+    path: assets/typemate.png
+  - description: "TypeMate Banner"
+    path: assets/typemate_banner.png
+
+environment:
+  sdk: ^3.8.1
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.1.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  integration_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.ratulhasanruhan.type_mate
+        pluginClass: TypeMatePlugin
+      ios:
+        pluginClass: TypeMatePlugin
+
+  assets:
+    - assets/
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/to/resolution-aware-images
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/to/asset-from-package
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/to/font-from-package
+
